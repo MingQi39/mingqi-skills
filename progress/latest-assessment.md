@@ -1,24 +1,20 @@
-# Assessment — 2026-06-15
+# 评估 — 2026-06-15
 
-**Level:** Lv0 → Lv1 (起步)
-**Verdict:** In Progress
-**Target:** Lv5 (interview-ready for 40k+ AI App Engineer)
+**等级：** Lv0
+**判定：** 不通过
 
-## Completed
-- FastAPI 项目初始化 + 第一个 `/health` 端点跑通
-- 理解了 ASGI 服务器原理（Uvicorn 托管 FastAPI）
-- 了解了虚拟环境工具选型（conda vs venv vs poetry vs Docker）
+## 初始评估
+- 英语基础薄弱，大致初中水平
+- 能借助翻译工具读技术文档，但独立阅读困难
+- 口语几乎无法组织句子（说 Lv0）
+- 写作需要从最基础的句子结构开始（写 Lv0）
+- 无海外工作或留学经历
+- 目标：12 个月内达到能面试远程工作的水平（从 Lv0 起步，需要更激进的投入）
 
-## Coach's Assessment
-今天正式起步。首个 FastAPI 端点跑通，理解了框架和服务器之间的关系，这是后面所有 Case 的地基。继续保持「边学边做」的节奏。
+## 下一步
+1. 先补最基础的句子结构：主语 + 动词 + 宾语（SVO）
+2. 每日 3 句英文输出（先用中文想好，再翻译成最简单的英文）
+3. 技术关键词中英对照（React、TypeScript 相关术语）
 
-## Next Steps
-1. **明天：** FastAPI 路由进阶 — GET/POST/PUT/DELETE + Pydantic 请求体校验
-2. 后天：PostgreSQL + SQLAlchemy async 连接 + 创建第一张表
-3. 本周目标：FastAPI + PostgreSQL 打通，完成第一个 CRUD 端点
-
-## Weekly Challenge
-Case 1 骨架：FastAPI project + PostgreSQL connected + first /documents CRUD endpoint working
-
-## Risk Alert
-别急着跳 LangChain/LangGraph。先把 API 和数据库基础打牢，这是面试权重最高的部分。
+## 本周挑战
+能用英语写出 5 句介绍自己做什么工作的句子
