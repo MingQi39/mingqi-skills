@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+# 用法:
+#   ./gen_cover.sh "笔记标题或场景描述"
+#   ./gen_cover.sh "深夜回村的山路" 5
+#
+# 输出: ./out/<时间戳>_NN.jpg
+#
+# 风格档(STYLE 环境变量,默认 iphone):
+#   iphone   — iPhone 随手拍质感(默认,反 AI 味,推荐养老/生活号)
+#   film     — 胶片质感(轻颗粒、自然光、不饱和)
+#   doc      — 纪录片质感(中性灰调、信息密度高)
+#   clean    — 干净商业图(原 cinematic 风格,慎用,易 AI 味)
+#
+# 模型(MODEL 环境变量):
+#   flux-realism (默认推荐) | flux | flux-anime | turbo
+
+set -euo pipefail
+
+PROMPT="${1:?用法: $0 \"prompt\" [张数]}"
+COUNT="${2:-1}"
+OUT_DIR="${OUT_DIR:-./out}"
+WIDTH="${WIDTH:-1024}"
+HEIGHT="${HEIGHT:-1820}"
+MODEL="${MODEL:-flux-realism}"
+STYLE="${STYLE:-iphone}"
+
+mkdir -p "$OUT_DIR"
+TS=$(date +%Y%m%d_%H%M%S)
+
+# 风格后缀:全部为「反 AI 味」表达,绕开 cinematic / 8k / hyperdetailed 这类触发器
+case "$STYLE" in
+  iphone)
+    # iPhone 随手拍:轻噪点、自然光、白平衡略冷、构图不完美
+    STYLE_SUFFIX=", shot on iPhone, casual snapshot, slightly off-center composition, natural window light, soft shadow, mild grain, slightly cool white balance, unedited photo, candid, not retouched, no bokeh effect, ordinary moment"
+    NEG_HINT=""  # pollinations 不支持 negative,只能在 prompt 里反向描述
+    ;;
+  film)
+    # 胶片质感:Portra 400 / Cinestill 模拟
+    STYLE_SUFFIX=", 35mm film photo, Kodak Portra 400, fine grain, natural daylight, muted colors, slight halation, imperfect focus, analog feel, scanned negative"
+    ;;
+  doc)
+    # 纪录片:中性灰、新闻摄影感
+    STYLE_SUFFIX=", documentary photography, neutral tones, available light, photojournalism, flat color grading, real moment, no styling, observational"
+    ;;
+  clean)
+    # 原风格(已知容易 AI 味,保留作为对照)
+    STYLE_SUFFIX=", cinematic lighting, moody atmosphere, ultra detailed, 8k, sharp focus"
+    ;;
+  *)
+    echo "未知 STYLE=$STYLE,可选: iphone | film | doc | clean" >&2
+    exit 1
+    ;;
+esac
+
+# 反 AI 味通用前缀:压制塑料感/糖水感
+ANTI_AI_PREFIX="amateur photo, real life, "
+
+FULL_PROMPT="${ANTI_AI_PREFIX}${PROMPT}${STYLE_SUFFIX}"
+
+encode() { jq -rn --arg s "$1" '$s|@uri'; }
+ENCODED=$(encode "$FULL_PROMPT")
+
+echo "STYLE=$STYLE  MODEL=$MODEL  ${WIDTH}x${HEIGHT}"
+echo "PROMPT: $FULL_PROMPT"
+echo
+
+for i in $(seq 1 "$COUNT"); do
+  SEED=$RANDOM$RANDOM
+  # enhance=true 会让 AI 加戏(更"完美"=更假),关掉
+  URL="https://image.pollinations.ai/prompt/${ENCODED}?width=${WIDTH}&height=${HEIGHT}&model=${MODEL}&seed=${SEED}&nologo=true&enhance=false"
+  FILE="${OUT_DIR}/${TS}_$(printf '%02d' "$i").jpg"
+  echo "[$i/$COUNT] seed=$SEED → $FILE"
+  if curl -fsSL --max-time 120 -o "$FILE" "$URL"; then
+    BYTES=$(wc -c <"$FILE" | tr -d ' ')
+    echo "  ok ($BYTES bytes)"
+  else
+    echo "  FAILED"
+  fi
+done
+
+echo
+echo "Done. 文件夹: $OUT_DIR"

@@ -1,0 +1,5 @@
+interface:
+  display_name: "英语学习教练"
+  short_description: "帮中国软件工程师用英语找到远程技术工作，面试和工作沟通"
+  default_prompt: "Use $english-coach to help me practice English for landing a remote developer job."
+  brand_color: "#10B981"

@@ -1,0 +1,5 @@
+interface:
+  display_name: "AI Platform Coach"
+  short_description: "Frontend to AI Platform Engineer growth coach"
+  default_prompt: "Use $ai-platform-coach to assess my AI learning progress and assign the next task."
+  brand_color: "#3B82F6"
