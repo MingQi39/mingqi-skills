@@ -20,13 +20,29 @@ description: English coach for a Chinese software engineer aiming to land a remo
 - 中国软件工程师，6 年经验
 - 前端方向（React、TypeScript）
 - 正在转型 AI Platform Engineer
-- 英语基础：能读技术文档，但**口语和写作是短板**
+- 英语基础：薄弱，大致初中水平（实际约 Lv0），口语和写作几乎无法组织句子
 - 没有海外工作或留学经历
 - 目标：12 个月内达到能通过远程工作面试、正常工作的水平
 
 ## 能力等级体系（远程工作场景导向）
 
-### Lv0–Lv2：生存英语
+### Lv1–Lv2：生存英语
+### Lv0a：基础补课（词根 + 基础语法）
+
+能力：
+- 掌握常用前缀（re-, un-, pre-, dis-）和后缀（-tion, -er, -able, -ful）
+- 理解英语基本句子结构：主语 + 动词 + 宾语（SVO）
+- 掌握 be 动词（am/is/are）、一般现在时、现在进行时
+- 能用 3-5 个单词组成简单句
+
+### Lv0b：简单句子输出
+
+能力：
+- 能用简单句介绍自己的工作和日常
+- 能写 3-5 句英文自我介绍（借助模板）
+- 能听懂极慢速的简单对话
+
+### Lv0b–Lv2：生存英语
 
 能力：
 - 能写简单的英文 Slack 消息（表达基本意思，有语法错误但对方能懂）
@@ -62,19 +78,6 @@ description: English coach for a Chinese software engineer aiming to land a remo
 
 ## 学习原则
 
-### 原则 1：场景驱动，不背单词
-
-禁止：
-- 每天背 50 个单词
-- 刷语法题
-- 看美剧"学英语"
-
-必须：
-- 每个练习场景都是真实工作会遇到的
-- 需要说什么就练什么
-- 需要写什么就练什么
-
-### 原则 2：输出优先
 
 禁止：
 - 只看不写
@@ -106,6 +109,16 @@ description: English coach for a Chinese software engineer aiming to land a remo
 ## 学习案例（面试驱动）
 
 ### 案例 1：英文简历 + Cover Letter（Lv0 → Lv2）
+### 案例 0：词根 + 基础语法（Lv0a）
+
+不是传统英语课，只学程序员工作里**高频出现的词根和结构**。
+
+阶段：
+1. **前缀**：re-（重新）、pre-（预先）、un-（否定）、dis-（相反）、over-（过度）
+2. **后缀**：-er（做…的人/工具）、-tion（名词化）、-able（可…的）、-ful（充满…的）、-less（没有…的）
+3. **基本句子公式**：I am a [职业]、I [动词] [东西]、I am good at [东西]
+4. **时态入门**：一般现在时 vs 现在进行时 vs 一般过去时（程序员场景专用）
+
 
 覆盖面试环节：简历筛选
 
@@ -279,8 +292,9 @@ description: English coach for a Chinese software engineer aiming to land a remo
 
 | 月份 | 目标 | 关键动作 |
 |------|------|---------|
-| 1-2 | Lv0→Lv2 生存英语 | 案例 1（简历）+ 每日 3 句英文写作 |
-| 3-4 | Lv2→Lv3 工作英语 | 案例 3（异步沟通）+ standup 录音 |
+| 1 | Lv0a 基础补课 | 案例 0（词根+语法）+ 简单句公式 |
+| 2 | Lv0a→Lv0b 简单输出 | 案例 0 收尾 + 每日 3 句英文写作 |
+| 3-4 | Lv0b→Lv2 生存英语 | 案例 1（简历）+ 案例 3（异步沟通）|
 | 5-7 | Lv3→Lv4 面试入门 | 案例 2（技术面试）+ STAR 项目讲述 |
 | 8-10 | Lv4→Lv5 面试进阶 | 案例 5（BQ）+ 真实投递 |
 | 11-12 | Lv5→Lv6 工作就绪 | 案例 4（视频会议）+ 真实面试 |
@@ -291,7 +305,7 @@ description: English coach for a Chinese software engineer aiming to land a remo
 
 1. 保存评估摘要到 `progress/latest-assessment.md`
 2. 追加日志到 `progress/history.md`
-3. Git 提交并推送到 `git@github.com:MingQi39/english-skill.git`
+3. Git 提交并推送到 `git@github.com:MingQi39/mingqi-skills.git`
 
 提交命令：
 ```bash
