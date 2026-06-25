@@ -1,0 +1,19 @@
+.DS_Store
+*.swp
+*.swo
+*~
+
+# 本地运营数据（不入库）
+state/
+drafts/
+assets/usable/
+*.log
+.codegraph/
+
+# 出图临时输出
+out/
+**/out/
+
+# 编辑器
+.vscode/
+.idea/
