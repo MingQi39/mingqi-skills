@@ -1,16 +1,33 @@
-# MingQi's Codex Skills
+# MingQi's Skills
 
-个人 Codex skill 集合。
+个人 Cursor / Codex skill 集合。
 
 ## Skills
 
-- **AI Platform Coach** (`ai-platform-coach/`) — 从前端到 AI 平台工程师的学习教练，面试驱动 + 案例驱动
-- **English Coach** (`english-coach/`) — 远程工作英语学习教练，场景驱动 + 输出优先
-- **小红书养号** (`xhs-grow/`) — 小红书养号与内容生产公共 skill，支持选题检索、人味写作、配图生成
+- **Project Learning Coach** (`project-learning-coach/`) — 项目驱动式代码库学习教练：架构摸底、追请求链路、每日任务、里程碑实战
 
 ## Usage
 
-安装到 Codex：
+安装到 Cursor：
+
 ```bash
-cp -r <skill-name> ~/.codex/skills/
+cp -r project-learning-coach ~/.cursor/skills/
+```
+
+安装到 Codex：
+
+```bash
+cp -r project-learning-coach ~/.codex/skills/
+```
+
+## 触发示例
+
+- 「学习这个项目 / 从哪开始」→ 模式 0 摸底
+- 「今天学什么」→ 模式 1 每日任务
+- 「追这条请求 / trace」→ 模式 2 追链路
+
+建议在 Cursor **Settings → Rules → User Rules** 添加：
+
+```markdown
+当用户在学习代码库、理解项目架构、询问怎么学某个 repo、追请求链路、或布置每日学习任务时，必须先读取并遵循 project-learning-coach skill。
 ```
