@@ -7,8 +7,6 @@ Personal Cursor / Codex / OpenCode skill collection.
 - **Project Learning Coach** (`project-learning-coach/`) — Project-driven codebase learning: architecture survey, request tracing, daily tasks, milestone practice
 - **KAN** (`kan/`) — Knowledge Atlas Navigator: spatial learning protocol. Atlas navigation, Zoom In/Out, Navigate, Knowledge Distance, interview-driven ten-stage flow
 
-> Former name `interview-driven-learning` merged into KAN v3.0.
-
 ## Usage
 
 Install to Cursor:
