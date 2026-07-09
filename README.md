@@ -1,46 +1,73 @@
 # MingQi's Skills
 
-个人 Cursor / Codex skill 集合。
+Personal Cursor / Codex / OpenCode skill collection.
 
 ## Skills
 
-- **Project Learning Coach** (`project-learning-coach/`) — 项目驱动式代码库学习教练：架构摸底、追请求链路、每日任务、里程碑实战
-- **Interview-Driven Learning** (`interview-driven-learning/`) — 视觉化面试驱动学习：先建知识地图，再按十阶段流程深度学习（定位 → 图谱 → 树 → 原理 → 机制 → 关联 → 项目 → 面试 → 压缩 → 回归图谱）
+- **Project Learning Coach** (`project-learning-coach/`) — Project-driven codebase learning: architecture survey, request tracing, daily tasks, milestone practice
+- **KAN** (`kan/`) — Knowledge Atlas Navigator: spatial learning protocol. Atlas navigation, Zoom In/Out, Navigate, Knowledge Distance, interview-driven ten-stage flow
+
+> Former name `interview-driven-learning` merged into KAN v3.0.
 
 ## Usage
 
-安装到 Cursor：
+Install to Cursor:
 
 ```bash
 cp -r project-learning-coach ~/.cursor/skills/
-cp -r interview-driven-learning ~/.cursor/skills/
+cp -r kan ~/.cursor/skills/
+# Symlink (recommended)
+ln -sfn "$(pwd)/kan" ~/.cursor/skills/kan
 ```
 
-安装到 Codex：
+Install to Codex:
 
 ```bash
 cp -r project-learning-coach ~/.codex/skills/
-cp -r interview-driven-learning ~/.codex/skills/
+cp -r kan ~/.codex/skills/
+ln -sfn "$(pwd)/kan" ~/.codex/skills/kan
 ```
 
-## 触发示例
+Install to OpenCode:
+
+```bash
+ln -sfn "$(pwd)/kan" ~/.config/opencode/skills/kan
+# ~/.config/opencode/AGENTS.md — global KAN rules
+# ~/.config/opencode/opencode.jsonc — instructions + skill permissions
+```
+
+## Trigger examples
 
 **Project Learning Coach**
 
-- 「学习这个项目 / 从哪开始」→ 模式 0 摸底
-- 「今天学什么」→ 模式 1 每日任务
-- 「追这条请求 / trace」→ 模式 2 追链路
+- `learn this project / where to start` → mode 0 survey
+- `trace this request` → mode 2 trace
 
-**Interview-Driven Learning**
+**KAN**
 
-- 「面试准备 React Fiber」→ 从 ① 知识定位 + ② 知识图谱开始
-- 「帮我压缩一下今天学的内容」→ ⑨ 压缩阶段
-- 「这道面试题怎么答」→ ⑧ 面试阶段
+- `KAN: learn GIL` → Phase 0 atlas + ten stages
+- `Zoom In Bytecode` → expand subtree
+- `Navigate GIL → FastAPI` → path navigation
+- `How are FastAPI and LangGraph related?` → Knowledge Distance
+- `Mock interview asyncio` → interview tree
 
-建议在 Cursor **Settings → Rules → User Rules** 添加：
+Optional Cursor **Settings → Rules → User Rules**:
 
 ```markdown
-当用户在学习代码库、理解项目架构、询问怎么学某个 repo、追请求链路、或布置每日学习任务时，必须先读取并遵循 project-learning-coach skill。
-
-当用户进行面试准备、面试驱动学习、视觉化学习某个技术主题、或要求按知识图谱深度学习时，必须先读取并遵循 interview-driven-learning skill。
+Codebase/repo learning → project-learning-coach.
+Concepts / interviews / Zoom / Navigate → kan (~/.cursor/skills/kan/SKILL.md).
 ```
+
+OpenCode uses `~/.config/opencode/AGENTS.md` + `kan` skill (no hook; load skill on learning prompts).
+
+## KAN layout
+
+```
+kan/
+├── SKILL.md          # Agent entry
+├── SPEC/             # Specs (maintain these)
+├── EXAMPLES/         # Reference output
+└── README.md
+```
+
+Repo: [github.com/MingQi39/mingqi-skills](https://github.com/MingQi39/mingqi-skills)
