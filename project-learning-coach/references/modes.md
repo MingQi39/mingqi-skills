@@ -1,95 +1,115 @@
-# 互动模式详解
+# Interaction Modes
 
-## 模式 0：项目摸底
+## Mode 0: Baseline Mapping
 
-**何时用**：用户第一次打开仓库，或问「这个项目怎么学 / 从哪开始」。
+**When to use**
+- First-time repository onboarding
+- User asks "where should I start?"
 
-**步骤**：
+**Steps**
+1. Read root README and key module READMEs.
+2. List top-level folder responsibilities (one line each).
+3. Identify 3 entry points: app boot, main API route, main frontend feature.
+4. Identify one golden path: the most common end-to-end user flow.
+5. Confirm local run path (scripts, docker, env examples).
+6. Produce architecture map + week-1 reading order (1-2 files/day).
+7. Set first milestone with explicit success signal.
 
-1. 读根 README + `frontend/README`、`backend/README`、`deploy/README`（存在则读）
-2. 列出顶层目录职责（一行一个）
-3. 找 **3 个入口**：应用启动、主 API 路由、前端主页面/Feature
-4. 找 **1 条黄金路径**：最常见用户操作的全链路（聊天、登录、Agent 对话等）
-5. 检查如何本地跑（脚本、docker、env 示例）
-6. 输出架构地图 + 第 1 周阅读顺序（每天 1–2 个文件，不是 20 个）
-7. 给出 **第一个里程碑**（必须可验收，例如：加一行日志并看到输出）
-
-**禁止**：未读仓库就列「通用学习路线」。
-
----
-
-## 模式 1：每日学习任务
-
-**何时用**：「今天学什么」「今天要学什么」「daily plan」。
-
-**步骤**：
-
-1. 若存在 `{workspace}/.learning/progress.md`，先读进度
-2. 基于当前阶段只布置 **1 个任务**（1–2h）
-3. 任务必须包含：文件路径、命令、预期输出、前端对照
-4. 说明该任务服务于哪个更大里程碑
-
-**反模式**：一次列 5 个任务；模糊写「多看看 FastAPI」。
+**Never do**
+- Generic learning plan without repository scan.
 
 ---
 
-## 模式 2：追链路
+## Mode 1: Daily Task
 
-**何时用**：用户指定功能（如「旅行 Agent 聊天怎么工作的」）或选黄金路径。
+**When to use**
+- "What should I study today?"
 
-**步骤**：
+**Steps**
+1. Read `{workspace}/.learning/progress.md` if it exists.
+2. Assign exactly one 1-2h task.
+3. Include file paths, commands, expected output, frontend analogy.
+4. Explain how this task serves a larger milestone.
 
-1. 从 **前端触发点** 或 **API 路由** 开始，用 Grep/SemanticSearch 找下游
-2. 给出 **严格有序** 的文件列表（每文件标注「只看哪个函数」）
-3. 提 3 个理解检验问题（为什么 async、为什么这样分层等）
-4. 布置 **最小改动**：一处 log / 断点说明 / 参数 tweak
-
-**输出上限**：阅读清单 ≤ 8 个文件；超出则分层，本次只追前半段。
-
----
-
-## 模式 3：里程碑实战
-
-**何时用**：用户已跑通并追过至少 1 条链路，想要「动手做」。
-
-**里程碑难度梯度**：
-
-| 级别 | 示例 | 验收 |
-|------|------|------|
-| L1 | 加 logger、改 env 默认值 | 终端/Network 可见 |
-| L2 | 新增简单 API/工具/handler | 单元测试或手动调用通过 |
-| L3 | 小功能端到端（UI + API） | 用户路径可走通 |
-| L4 | 重构/加测试/加错误处理 | 测试绿 + 行为不变 |
-
-一次只给一个里程碑；完成后再升一级。
+**Anti-pattern**
+- Giving many tasks at once.
 
 ---
 
-## 模式 4：学习复盘
+## Mode 2: Request Trace
 
-**何时用**：用户分享「今天学了 X」「我完成了 Y」。
+**When to use**
+- User asks to trace a specific request/feature flow.
 
-**步骤**：
+**Steps**
+1. Start from frontend trigger or API route.
+2. Provide strict ordered file list and what function to focus on.
+3. Ask 3 understanding-check questions.
+4. Assign one minimal code change for validation.
 
-1. 简短确认做对了什么
-2. **追问 1–2 题**检验真懂（非背 API）
-3. **扩展 1 点**：生产场景或面试追问
-4. **大图位置**：在能力树/项目进度中的位置
-5. **明日预告**：下一任务一行摘要
-6. 更新 `{workspace}/.learning/progress.md`（若可写）
+**Limit**
+- Reading list <= 8 files per session.
 
 ---
 
-## 模式 5：卡点诊断
+## Mode 3: Milestone Build
 
-**何时用**：「看不懂」「太复杂」「卡在某文件」。
+**When to use**
+- User already ran project and traced at least one full path.
 
-**步骤**：
+**Difficulty ladder**
 
-1. 让用户说明 **卡在哪一行/哪个概念**（没有则帮缩小到单文件单函数）
-2. 只解释该函数 **输入/输出/谁调用它**
-3. 给前端对照
-4. 若文件 >300 行：指出 **唯一需要看的 30 行**
-5. 给一个 5 分钟小实验验证理解
+| Level | Example | Acceptance |
+|---|---|---|
+| L1 | Add logging / tune env default | Observable in terminal/network |
+| L2 | Add simple API/tool/handler | Manual call or test passes |
+| L3 | Small end-to-end feature | Full user path works |
+| L4 | Refactor + tests + error handling | Tests green, behavior stable |
 
-**禁止**：重讲整个框架；甩 LangGraph 教程链接。
+Assign one milestone only. Escalate after completion.
+
+---
+
+## Mode 4: Review & Consolidation
+
+**When to use**
+- User says "I finished X" or "I studied Y today."
+
+**Steps**
+1. Confirm what was done well.
+2. Ask 1-2 probing questions.
+3. Extend one production/interview scenario.
+4. Map this work to capability model and knowledge tree.
+5. Give one-line next-step preview.
+6. Update progress file (or use fallback copy block).
+
+---
+
+## Mode 5: Blocker Diagnosis
+
+**When to use**
+- User is stuck or confused.
+
+**Steps**
+1. Narrow to one line/function/concept.
+2. Explain only input/output/callers for that function.
+3. Add frontend analogy.
+4. If file >300 lines, isolate the only 20-40 lines to inspect now.
+5. Provide one 5-minute verification experiment.
+
+**Never do**
+- Re-teach full framework.
+
+---
+
+## Mode 6: Interview Drill
+
+**When to use**
+- User asks for interview preparation after learning a project.
+
+**Output format**
+1. One core question (architecture/tradeoff).
+2. One follow-up pressure test (scale/reliability/failure mode).
+3. Strong answer reference.
+4. User answer slot.
+5. Score out of 10 + improvement point.
